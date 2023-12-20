@@ -1,4 +1,4 @@
-// Using the potentiometer, one can adjust the servo motor speed and more.
+// Using the potentiometer, one can adjust the servo motor speed and more. All important information is also displayed on the monitor screen
 // Library for servo 
 #include <Servo.h>
 // create servo object to control a servo
