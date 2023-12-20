@@ -1,0 +1,40 @@
+// Using the potentiometer, one can adjust the servo motor speed and more.
+// Library for servo 
+#include <Servo.h>
+// create servo object to control a servo
+Servo myservo; 
+// analog pin used to connect the potentiometer
+int potpin = 0;
+// variable to read the value from the analog pin 
+int val;
+void setup() {
+  // put your setup code here, to run once:
+// attaches the servo on pin 9 to the servo object
+myservo.attach(9); 
+// start serial communication at 9600
+Serial.begin(9600);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+// reads the value of the potentiometer (value between 0 and 102)
+val = analogRead(potpin);
+//scale it to use it with the servo (value between 0 and 180)
+val = map(val, 0, 1023, 0, 180);
+// sets the servo position according to the scaled value
+myservo.write(val);
+// waits for the servo to get there
+delay(15);
+// display additional information in Serial monitor
+int bitValue = digitalRead(potpin);
+float voltage = val * (5.0 / 1023);
+float ldrResistance = (5.0 * (1023 - val)) / val;
+// print information to Serial Monitor
+Serial.print("Bit value:");
+Serial.print(bitValue);
+Serial.print("\t Voltage:");
+Serial.print(voltage);
+Serial.print("V\t LDR Resistance:");
+Serial.println("ohms");
+delay(500);
+}
